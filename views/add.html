@@ -45,13 +45,26 @@
       },
       toolbarHandlers: {
         push: function() {
+          var $push = $(".editormd-menu i[name='push']");
+          var pushStr = $push.text();
+          $push.text('发布中...');
           var req = {
             id: $('.title').attr('data-id'),
             title: $('.title').val().trim() || '无标题文章',
             markdown: editor.getMarkdown()
           };
-          $.post('/aSaveArticle', req, function(sender) {
-            console.log(sender);
+          $.post('/aSaveArticle', req, function(resp) {
+            console.log(resp);
+            if(resp.status === 0) {
+              setTimeout(function(){
+                $push.text('发布成功~');
+                setTimeout(function() {
+                  $push.text(pushStr);
+                }, 1000);
+              }, 1500);
+            }else{
+              alert('发布失败');
+            }
           });
         }
       },
