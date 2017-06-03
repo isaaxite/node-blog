@@ -20,6 +20,11 @@ router.get('/in', function(req, res) {
   })
 });
 
+router.get('/out', function(req, resp){
+  delete req.session.userinfo;
+  resp.redirect(303, '/index');
+});
+
 router.get('/save', function(req, resp) {
   var data = req.query;
   var md5 = crypto.createHash('md5'),
@@ -43,7 +48,7 @@ router.post('/aIn', function(req, res) {
     const isPass = !isEmptyObj(docs) && docs.pwd === pwd;
 
     if(isPass){
-      req.session.user = { name: data.user };
+      req.session.userinfo = { name: data.user };
       res.json({ status: 0, msg: 'pass' });
     }else {
       res.json({status: 1, msg: '账号或密码有误！'});

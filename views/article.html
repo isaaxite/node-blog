@@ -10,6 +10,7 @@
     #article{ padding: 0; }
     .title{ font-size: 30px;line-height: 50px;font-weight: normal;margin: 0;padding: 0; }
     small{ line-height: 24px;color: #969696; }
+    .a-edit{ position: absolute;right: 0;top: 0;line-height: 24px;color: currentColor; }
 </style>
 {% endblock %}
 
@@ -18,7 +19,7 @@
     <h3 class="title">{{data.title||"无标题文章"}}</h3>
     <div style="position: relative;">
         <small>Update At: {{data.updateAt|date('Y.m.d h:i')}}</small>
-        <a style="position: absolute;right: 0;top: 0;line-height: 24px;color: currentColor;" href="/add/{{data._id.toString()}}">编辑文章</a>
+        {% if userinfo %}<a class="a-edit" href="/add/{{data._id.toString()}}">编辑文章</a>{% endif %}
     </div>
     <div id="article">
         <textarea style="display:none;" name="test-editormd-markdown-doc">{{data.markdown}}</textarea>

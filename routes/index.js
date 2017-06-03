@@ -6,10 +6,10 @@ var Article = require('../models/articles');
 router.get('/index', function(req, resp, next) {
   var article = new Article();
   article.find(0, function(err, docs) {
-    console.log(req.session.user);
     resp.render('index', {
       title: '主页',
-      data: docs
+      data: docs,
+      userinfo: req.session.userinfo
     });
   });
 });
@@ -20,31 +20,47 @@ router.get('/article/:id', function(req, resp) {
   article.findById(id, function(err, docs) {
     resp.render('article', {
       title: '文章',
-      data: docs
+      data: docs,
+      userinfo: req.session.userinfo
     });
   });
 });
 
 router.get('/archive', function (req, resp) {
-  resp.render('archive', { title: '归档' });
+  resp.render('archive', {
+    title: '归档',
+    userinfo: req.session.userinfo
+  });
 });
 
 router.get('/about', function (req, resp) {
-  resp.render('about', { title: '关于' });
+  resp.render('about', {
+    title: '关于',
+    userinfo: req.session.userinfo
+  });
 });
 
 router.get('/add(/:id)?', function (req, resp) {
+  console.log(req.session.userinfo);
+  if(!req.session.userinfo) {
+    resp.redirect('/index');
+    return false;
+  }
   var id = req.params.id;
   if(id) {
     var article = new Article();
     article.findById(id, function (err, docs) {
       resp.render('add', {
         title: '修改文章',
-        data: docs
+        data: docs,
+        userinfo: req.session.userinfo
       });
     });
   }else {
-    resp.render('add', {title: '添加文章', data: {}});
+    resp.render('add', {
+      title: '添加文章',
+      userinfo: req.session.userinfo
+    });
   }
 });
 

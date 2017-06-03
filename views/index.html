@@ -7,10 +7,15 @@
 
 {% block content %}
 <h3>主页</h3>
-<a href="/add">添加文章</a>
+{% if userinfo %}<a href="/add">添加文章{% endif %}
 <ul>
     {% for item in data %}
-    <li><a href="/article/{{ item._id.toString() }}">{{item.title||"无标题文章"}}</a> <a href="javascript: ;" class="a-delete" data-id="{{item._id.toString()}}">删除文章</a></li>
+    <li>
+        <a href="/article/{{ item._id.toString() }}">{{item.title||"无标题文章"}}</a>
+        {% if userinfo %}
+        <a href="javascript: ;" class="a-delete" data-id="{{item._id.toString()}}">删除文章</a>
+        {% endif %}
+    </li>
     {% endfor %}
 </ul>
 <script>
