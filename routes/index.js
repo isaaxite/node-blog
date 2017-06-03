@@ -6,7 +6,7 @@ var Article = require('../models/articles');
 router.get('/index', function(req, resp, next) {
   var article = new Article();
   article.find(0, function(err, docs) {
-    // console.log(docs);
+    console.log(req.session.user);
     resp.render('index', {
       title: '主页',
       data: docs

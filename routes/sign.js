@@ -43,6 +43,7 @@ router.post('/aIn', function(req, res) {
     const isPass = !isEmptyObj(docs) && docs.pwd === pwd;
 
     if(isPass){
+      req.session.user = { name: data.user };
       res.json({ status: 0, msg: 'pass' });
     }else {
       res.json({status: 1, msg: '账号或密码有误！'});
