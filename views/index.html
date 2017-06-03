@@ -15,6 +15,7 @@
 </ul>
 <script>
     $(document).on('click', '.a-delete', function(e) {
+        if(!confirm("Y/N?")){ return false; }
         var id = $(this).attr('data-id');
         console.log(id);
         $.post('/aDelete', { id: id }, function(resp) {

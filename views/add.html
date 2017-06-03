@@ -12,9 +12,9 @@
 </style>
 {% endblock %}
 {% block content %}
-<input class="title" type="text" name="title" placeholder="请输入标题..." value="{{data.title}}">
+<input class="title" type="text" name="title" data-id="{{data._id.toString()}}" placeholder="请输入标题..." value="{{data.title}}">
 <div id="editormd">
-    <textarea style="display:none;">{{data.markdown}}</textarea>
+    <textarea style="display:none;">{{data.markdown||'###前言'}}</textarea>
 </div>
 <script src="/javascripts/jquery-1.11.1.min.js"></script>
 <script src="/statics/editor.md/editormd.js"></script>
@@ -46,6 +46,7 @@
       toolbarHandlers: {
         push: function() {
           var req = {
+            id: $('.title').attr('data-id'),
             title: $('.title').val().trim() || '无标题文章',
             markdown: editor.getMarkdown()
           };

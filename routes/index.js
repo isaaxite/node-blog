@@ -68,18 +68,28 @@ router.all('/upload', function(req, resp) {
 
 router.post('/aSaveArticle', function (req, resp) {
   var date = new Date();
+  var body = req.body;
   var data = {
-    title: req.body.title,
+    title: body.title,
     markdown: req.body.markdown,
     createAt: date.getTime(),
     updateAt: date.getTime()
   };
   var article = new Article();
-  article.save(data, function(err, docs) {
-    console.log(docs);
-    resp.json({ status: 0, msg: 'test' });
-    resp.end();
-  });
+  if(body.id){
+    data.id = body.id;
+    article.update(data, function(err, docs) {
+      console.log(docs);
+      resp.json({ status: 0, msg: 'test' });
+      resp.end();
+    });
+  }else{
+    article.save(data, function(err, docs) {
+      console.log(docs);
+      resp.json({ status: 0, msg: 'test' });
+      resp.end();
+    });
+  }
 });
 
 module.exports = router;

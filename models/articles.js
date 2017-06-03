@@ -91,3 +91,26 @@ Articles.prototype.deleteById = function(id, callback) {
     });
   });
 };
+
+Articles.prototype.update = function(options, callback) {
+  var that = this;
+  var ObjectId = require('mongodb').ObjectID;
+  mongodb.open(function(err, db) {
+    if(err){ return callback(err); }
+    db.collection(that.dbName, function(err, collection) {
+
+      if(err){
+        mongodb.close();
+        return callback(err);
+      }
+
+      collection.update({'_id': ObjectId(options.id)}, {
+          $set: { title: options.title, markdown: options.markdown }
+      }, function(err) {
+        mongodb.close();
+        if(err) { return callback(err); }
+        callback(null);
+      });
+    });
+  });
+};
