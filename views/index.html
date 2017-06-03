@@ -1,11 +1,29 @@
 {% extends 'layout.html' %}
 
-{% block title %}index {{title}} {%endblock%}
+{% block title %}{{title}}{%endblock%}
 
 {% block head %}
-{{title}}
 {% endblock %}
 
 {% block content %}
-<p>This is just an awesome page.</p>
+<h3>主页</h3>
+<a href="/add">添加文章</a>
+<ul>
+    {% for item in data %}
+    <li><a href="/article/{{ item._id.toString() }}">{{item.title||"无标题文章"}}</a> <a href="javascript: ;" class="a-delete" data-id="{{item._id.toString()}}">删除文章</a></li>
+    {% endfor %}
+</ul>
+<script>
+    $(document).on('click', '.a-delete', function(e) {
+        var id = $(this).attr('data-id');
+        console.log(id);
+        $.post('/aDelete', { id: id }, function(resp) {
+            if(resp.status === 0){
+              location.reload();
+            }else{
+              alert('删除失败~');
+            }
+        });
+    });
+</script>
 {% endblock %}

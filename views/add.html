@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{title}} {%endblock%}
+
+{% block head %}
+<link rel="stylesheet" href="/stylesheets/editormd.min.css" />
+<style>
+    html,body{ height: 100%; }
+    body{ margin: 0;padding: 0;overflow-x: hidden; }
+    .title{ width: 100%;height: 50px;font-size: 30px;outline: none;padding-left: 50px;box-sizing: border-box;border: none; }
+    .menu,.menu + hr{ display: none; }
+</style>
+{% endblock %}
+{% block content %}
+<input class="title" type="text" name="title" placeholder="请输入标题..." value="{{data.title}}">
+<div id="editormd">
+    <textarea style="display:none;">{{data.markdown}}</textarea>
+</div>
+<script src="/javascripts/jquery-1.11.1.min.js"></script>
+<script src="/statics/editor.md/editormd.js"></script>
+<script type="text/javascript">
+  $(function() {
+    var editor = editormd("editormd", {
+      path : "/statics/editor.md/lib/", // Autoload modules mode, codemirror, marked... dependents libs path
+      width  : "100%",
+      height : "100%",
+      codeFold : true,
+      searchReplace : true,
+      saveHTMLToTextarea : true,    // 保存 HTML 到 Textarea
+      watch : true,
+      htmlDecode : "style,script,iframe|on*",            // 开启 HTML 标签解析，为了安全性，默认不开启
+      taskList : true,
+      tocm            : true,         // Using [TOCM]
+      tex : true,                     // 开启科学公式 TeX 语言支持，默认关闭
+      flowChart : true,
+      sequenceDiagram : true,         // 同上
+      onload : function() {
+
+      },
+      toolbarIcons : function() {
+        return ["undo", "redo", "||", "image", "watch", "preview", "push" ]
+      },
+      toolbarIconTexts : {
+        push : "发布更新"  // 如果没有图标，则可以这样直接插入内容，可以是字符串或HTML标签
+      },
+      toolbarHandlers: {
+        push: function() {
+          var req = {
+            title: $('.title').val().trim() || '无标题文章',
+            markdown: editor.getMarkdown()
+          };
+          $.post('/aSaveArticle', req, function(sender) {
+            console.log(sender);
+          });
+        }
+      },
+      imageUpload : true,
+      imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+      imageUploadURL : "/upload"
+    });
+  });
+</script>
+{% endblock %}

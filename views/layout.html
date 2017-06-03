@@ -3,9 +3,16 @@
   <head>
     <meta charset="utf-8">
     <title>{% block title %}{% endblock %}</title>
+    <script src="/javascripts/jquery-1.11.1.min.js"></script>
     {% block head %}{% endblock %}
   </head>
 <body>
+<ul class="menu">
+  <li><a href="/index">主页</a></li>
+  <li><a href="/archive">归档</a></li>
+  <li><a href="/about">关于</a></li>
+</ul>
+<hr>
 {% block content %}{% endblock %}
 </body>
 </html>
