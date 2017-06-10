@@ -2,10 +2,10 @@
  * Created by baohua on 17/5/10.
  */
 var express = require("express"),
-  router = express.Router(),
-  assert = require('assert');
+    router = express.Router(),
+    assert = require('assert');
 var crypto = require('crypto'),
-  User = require('../models/user');
+    User = require('../models/user');
 
 var isEmptyObj = function(obj) {
   for(key in obj){
