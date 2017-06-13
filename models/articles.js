@@ -39,7 +39,7 @@ Articles.prototype.find = function(count, callback){
         return callback(err);
       }
 
-      collection.find().toArray(function(err, docs) {
+      collection.find().sort({"updateAt": -1}).toArray(function(err, docs) {
         mongodb.close();
         if(err) { return callback(err); }
         callback(null, docs);

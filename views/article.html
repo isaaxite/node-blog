@@ -5,8 +5,8 @@
 {% block head %}
 <link rel="stylesheet" href="/statics/editor.md/css/editormd.preview.css" />
 <style>
-    #container{ width: 900px;margin: auto; }
-    /*#container img{ width: 100%; }*/
+    #container{ max-width: 900px;margin: auto; }
+    #container img{ max-width: 100%; }
     #article{ padding: 0; }
     .title{ font-size: 30px;line-height: 50px;font-weight: normal;margin: 0;padding: 0; }
     small{ line-height: 24px;color: #969696; }
@@ -16,7 +16,7 @@
 
 {% block content %}
 <div id="container">
-    <h3 class="title">{{data.title||"无标题文章"}}</h3>
+    <h3 class="title">{{data.title||"无标题文章"}}啊实打实的</h3>
     <div style="position: relative;">
         <small>Update At: {{data.updateAt|date('Y.m.d h:i')}}</small>
         {% if userinfo %}<a class="a-edit" href="/add/{{data._id.toString()}}">编辑文章</a>{% endif %}
