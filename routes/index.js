@@ -3,7 +3,7 @@ var router = express.Router();
 var Article = require('../models/articles');
 
 /* GET home page. */
-router.get('/index', function(req, resp, next) {
+router.get('/?(/index)?', function(req, resp, next) {
   var article = new Article();
   article.find(0, function(err, docs) {
     resp.render('index', {

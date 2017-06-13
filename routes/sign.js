@@ -14,7 +14,7 @@ var isEmptyObj = function(obj) {
   return true;
 };
 
-router.get('/in', function(req, res) {
+router.get('(/in)?', function(req, res) {
   res.render('in', {
     title: 'Sign In'
   })
