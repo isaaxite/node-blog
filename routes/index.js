@@ -11,7 +11,7 @@ router.get('/?(/index)?', function(req, resp, next) {
       data: docs,
       userinfo: req.session.userinfo
     });
-  });
+  }, {"updateAt": -1});
 });
 
 router.get('/article/:id', function(req, resp) {
@@ -27,10 +27,46 @@ router.get('/article/:id', function(req, resp) {
 });
 
 router.get('/archive', function (req, resp) {
-  resp.render('archive', {
-    title: '归档',
-    userinfo: req.session.userinfo
-  });
+  var article = new Article();
+  var _formatTime = function(time) {
+    var date = new Date(time);
+    date = date.getFullYear()+'年'+(+date.getMonth()+1)+'月'+date.getDate()+'日';
+    return date;
+  };
+  var groupByDate = function(data) {
+    var initData = data[0];
+    var initDate = _formatTime(initData.createAt);
+    var archive = {};
+    var date;
+    
+    archive[initDate] = [{
+      _id: initData._id,
+      title: initData.title
+    }];
+    for( var i = 1; i < data.length; i++ ) {
+      date = _formatTime(data[i].createAt);
+      if( archive[date] ) {
+        archive[date].push({
+          _id: data[i]._id,
+          title: data[i].title
+        });
+      } else {
+        archive[date] = [{
+          _id: data[i]._id,
+          title: data[i].title
+        }];
+      }
+    }
+    return archive;
+  };
+
+  article.find(0, function(err, docs) {
+    resp.render('archive', {
+      title: '归档',
+      data: groupByDate(docs),
+      userinfo: req.session.userinfo
+    });
+  }, {"createAt": 1});
 });
 
 router.get('/about', function (req, resp) {

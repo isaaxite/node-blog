@@ -29,7 +29,7 @@ Articles.prototype.save = function(options,callback) {
   });
 };
 
-Articles.prototype.find = function(count, callback){
+Articles.prototype.find = function(count, callback, sort){
   var that = this;
   mongodb.open(function(err, db) {
     if(err){ return callback(err); }
@@ -39,7 +39,7 @@ Articles.prototype.find = function(count, callback){
         return callback(err);
       }
 
-      collection.find().sort({"updateAt": -1}).toArray(function(err, docs) {
+      collection.find().sort(sort).toArray(function(err, docs) {
         mongodb.close();
         if(err) { return callback(err); }
         callback(null, docs);
