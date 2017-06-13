@@ -16,7 +16,7 @@
 
 {% block content %}
 <div id="container">
-    <h3 class="title">{{data.title||"无标题文章"}}啊实打实的</h3>
+    <h3 class="title">{{data.title||"无标题文章"}}</h3>
     <div style="position: relative;">
         <small>Update At: {{data.updateAt|date('Y.m.d h:i')}}</small>
         {% if userinfo %}<a class="a-edit" href="/add/{{data._id.toString()}}">编辑文章</a>{% endif %}
