@@ -3,18 +3,34 @@
 {% block title %}{{title}}{%endblock%}
 
 {% block head %}
+<style type="text/css">
+    .cover{ width: 100px; }
+</style>
 {% endblock %}
 
 {% block content %}
-<h3>主页</h3>
 {% if userinfo %}<a href="/add">添加文章{% endif %}
 <ul>
     {% for item in data %}
-    <li>
-        <a href="/article/{{ item._id.toString() }}">{{item.title||"无标题文章"}}</a>
-        {% if userinfo %}
-        <a href="javascript: ;" class="a-delete" data-id="{{item._id.toString()}}">删除文章</a>
-        {% endif %}
+    <li style="margin-bottom: 40px;list-style-type: none;">
+        <div>
+            <a href="/article/{{ item._id.toString() }}" style="padding-right: 10px;font-size: 18px;">{{item.title||"无标题文章"}}</a>
+            {% if userinfo %}
+            <a href="javascript: ;" class="a-delete" data-id="{{item._id.toString()}}">删除文章</a>
+            {% endif %}
+        </div>
+        <table>
+            <td style="max-width: 600px;">
+                {% if item.abstract %}
+                <small style="display: inline-block;color: rgb(51,51,51);">{{item.abstract}}</small>
+                {% endif %}
+            </td>
+            <td>
+                {% if item.cover %}
+                <img class="cover" src="{{item.cover}}" alt="">
+                {% endif %}
+            </td>
+        </table>
     </li>
     {% endfor %}
 </ul>

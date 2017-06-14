@@ -105,7 +105,12 @@ Articles.prototype.update = function(options, callback) {
       }
 
       collection.update({'_id': ObjectId(options.id)}, {
-          $set: { title: options.title, markdown: options.markdown }
+          $set: { 
+            cover: options.cover,
+            title: options.title,
+            abstract: options.abstract,
+            markdown: options.markdown
+          }
       }, function(err) {
         mongodb.close();
         if(err) { return callback(err); }
