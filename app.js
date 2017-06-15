@@ -13,6 +13,7 @@ var MongoStore = require('connect-mongo')(session);
 
 var index = require('./routes/index');
 var sign = require('./routes/sign');
+var test = require('./routes/test');
 
 var app = express();
 
@@ -42,6 +43,7 @@ app.use(session({
 
 app.use('/', index);
 app.use('/sign', sign);
+app.use('/test', test);
 
 // catch 404 and forward to error handler,自定义的中间件
 app.use(function(req, res, next) {
