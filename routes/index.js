@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
 var Article = require('../models/articles');
+var qiniu = require('../models/qiniu');
 var multer = require('multer');
 var storage = multer.diskStorage({
-  destination: 'public/uploads/',
+  destination: 'temp/',
   filename: function (req, file, cb) {
     var suffix = file.originalname.split('.');
     suffix = '.' + suffix.pop();
@@ -128,11 +130,18 @@ router.post('/aDelete', function(req, resp) {
 
 router.all('/uploadImg', upload.single('editormd-image-file'), function(req, resp) {
   var file = req.file;
-  var url = '/uploads/' + file.filename;
-  resp.json({
-    success: 1,
-    message: 'success',
-    url: url
+  qiniu.uploadFile(file.filename, file.path, function(err, ret) {
+    if(err) {
+      console.log(err);
+      resp.send('上传失败');
+    } else {
+      fs.unlink(file.path);
+      resp.json({
+        success: 1,
+        message: 'success',
+        url: ret.url
+      });
+    }
   });
 });
 
