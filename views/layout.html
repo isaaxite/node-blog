@@ -11,10 +11,13 @@
     <style>a{ color: currentColor; }</style>
   </head>
 <body>
-<ul class="menu">
+<ul class="menu" style="position: relative;">
   <li><a href="/">主页</a></li>
   <li><a href="/archive">归档</a></li>
-  <li><a href="/about">关于</a></li>
+  <li>
+    <a href="/about">关于</a>
+    <small>（本项目基于nodeJs，仅用于nodeJs学习，暂不做样式！）</small>
+  </li>
   {% if userinfo %}<a style="position: absolute;top: 10px;right: 20px;" href="/sign/out">注销</a>{% endif %}
 </ul>
 <hr>
