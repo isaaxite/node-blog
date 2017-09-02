@@ -6,15 +6,29 @@
 {% endblock %}
 
 {% block content %}
-<h3>主页</h3>
 {% if userinfo %}<a href="/add">添加文章{% endif %}
-<ul>
+<ul class="home">
     {% for item in data %}
-    <li>
-        <a href="/article/{{ item._id.toString() }}">{{item.title||"无标题文章"}}</a>
+    <li class="item">
         {% if userinfo %}
         <a href="javascript: ;" class="a-delete" data-id="{{item._id.toString()}}">删除文章</a>
         {% endif %}
+
+        <div class="title">
+            <a href="/article/{{ item._id.toString() }}">{{item.title||"无标题文章"}}</a>
+            <div class="msg">
+                <h3>isaac_宝华 发布于 {{ item.createAt|date('m月d, Y') }}</h3>
+                <small>0 comments</small>
+            </div>
+        </div>
+        <div class="abstract">
+                每天数以千计的 JavaScript 开发者使用的语言版本现在浏览器都还没有完全实现，许多他们使用的语言特性仅仅还只是建议，并没有保证说一定会纳入规范。因为有 Babel 项目使现在就能使用这些特性变成了可能。
+                
+                Babel 是我们知道的将 ES6 代码转译为 ES5 代码且能安全稳定运行最好的工具，同时它允许开发者开发插件，能够在编译时期转换 JavaScript 的结构。
+                
+                现在，我们来看看如何开发一个给 Jav...
+        </div>
+        <a href="/article/{{ item._id.toString() }}">阅读全文 »</a>
     </li>
     {% endfor %}
 </ul>
