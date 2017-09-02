@@ -14,7 +14,7 @@ var isEmptyObj = function(obj) {
   return true;
 };
 
-router.get('(/in)?', function(req, res) {
+router.get('/in', function(req, res) {
   res.render('in', {
     title: 'Sign In'
   })
@@ -44,6 +44,8 @@ router.post('/aIn', function(req, res) {
   userModule.get(data.user, function(err, docs) {
     var md5 = crypto.createHash('md5'),
       pwd = md5.update(String(data.pwd)).digest('hex');
+
+      console.log(1231232);
 
     const isPass = !isEmptyObj(docs) && docs.pwd === pwd;
 

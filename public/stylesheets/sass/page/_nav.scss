@@ -1,0 +1,18 @@
+.side>.menu{
+  height: 100%;color: #999;padding-top: 40px;
+  a{ 
+    &{ color: #ffffff;opacity: 0.6;display: block;padding-left: 25px;text-decoration: none;line-height: 26px;margin: 20px 0; }
+    &>i{ margin-right: 20px;width: 16px;font-size: 16px; }
+    &:hover{ opacity: 1; }
+  }
+  .headimg{ 
+    &{ font-size: 0;line-height: 0;margin: auto;text-align: center;margin-bottom: 30px; }
+    img{ height: auto;width: 140px;border-radius: 50%;margin-bottom: 25px;display: inline-block; }
+    p{ font-size: 16px; }
+  }
+  .link{ 
+    &{ padding-left: 15px; }
+    a{ display: inline;padding-left: 0; }
+    a>i{ margin: 0 10px; }
+   }
+}
