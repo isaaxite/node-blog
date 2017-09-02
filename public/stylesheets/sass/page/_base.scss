@@ -1,2 +1,5 @@
+*{ box-sizing: border-box;font-family: "Helvetica Neue",Arial,"Hiragino Sans GB",STHeiti,"Microsoft YaHei"; }
 html,body{ height: 100%; }
-body{ background-color: rgb(239, 230, 230); }
+body{ background-color: rgba(224, 220, 220, 0.6); }
+// #container{ max-width: 1000px; }
+.markdown-body{ padding: 0 !important; }
