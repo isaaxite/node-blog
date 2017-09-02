@@ -1,19 +1,17 @@
 {% extends 'layout.html' %}
-
 {% block title %} {{title}} {%endblock%}
-
 {% block head %}
 <style type="text/css" media="screen">
 	.item>li{ list-style-type: none; }
 	.label{ margin-bottom: 5px; }
 </style>
 {% endblock %}
-
 {% block content %}
-<div>
-    {% for key, item in data %}
+<div class="archive">
+	<h3>归档</h3>
+	{% for key, item in data %}
+	<h4 class="label">{{key}} ({{ item.length }})</h4>
     <ul class="item">
-    	<h3 class="label">{{key}}</h3>
     	{% for val in item %}
 	    <li>
 	        <a href="/article/{{ val._id.toString() }}">{{val.title||"无标题文章"}}</a>
