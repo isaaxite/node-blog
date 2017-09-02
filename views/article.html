@@ -7,10 +7,13 @@
 {% endblock %}
 
 {% block content %}
-<div id="container">
-    <h3 class="title">{{data.title||"无标题文章"}}</h3>
-    <div style="position: relative;">
-        <small>Update At: {{data.updateAt|date('Y.m.d h:i')}}</small>
+<div class="article" id="container">
+    <div class="title">
+        <a href="/article/{{ item._id.toString() }}">{{data.title||"无标题文章"}}</a>
+        <div class="msg">
+            <h3>isaac_宝华 发布于 {{ data.createAt|date('m月d, Y') }}</h3>
+            <small>0 comments</small>
+        </div>
         {% if userinfo %}<a class="a-edit" href="/add/{{data._id.toString()}}">编辑文章</a>{% endif %}
     </div>
     <div id="article">
