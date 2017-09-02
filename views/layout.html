@@ -1,36 +1,21 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="author" content="issac_宝华, issaxite@gmail.com"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
-    <title>{% block title %}{% endblock %}</title>
-    <script src="/javascripts/jquery-1.11.1.min.js"></script>
-    {% block head %}{% endblock %}
-    <style>a{ color: currentColor; }</style>
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="issac_宝华, issaxite@gmail.com"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
+  <title>{% block title %}{% endblock %}</title>
+  <script src="/javascripts/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  {% block head %}{% endblock %}
+</head>
 <body>
-<ul class="menu" style="position: relative;">
-  <li><a href="/">主页</a></li>
-  <li><a href="/archive">归档</a></li>
-  <li>
-    <a href="/about">关于</a>
-    <small>（本项目基于nodeJs，仅用于nodeJs学习，暂不做样式！）</small>
-  </li>
-  {% if userinfo %}<a style="position: absolute;top: 10px;right: 20px;" href="/sign/out">注销</a>{% endif %}
-</ul>
-<hr>
-{% block content %}{% endblock %}
+<div class="side">
+  {% include "./common/_nav.html" %}
+</div>
+<div class="content">
+  {% block content %}{% endblock %}
+</div>
 </body>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-101868379-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
 </html>
