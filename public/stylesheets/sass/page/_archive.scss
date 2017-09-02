@@ -1,0 +1,9 @@
+.archive{
+  &>h3{ font-size: 32px;margin-bottom: 25px; }
+  .label{ color: rgb(102, 102, 102);font-size: 18px;font-weight: bold;margin-top: 15px; }
+  .item{
+    &{ padding: 15px 0; }
+    li{ list-style: inside;line-height: 28px; }
+    a{ color: #2479CC;text-decoration: none; }
+  }
+}

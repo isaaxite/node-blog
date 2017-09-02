@@ -25,6 +25,10 @@
         <a href="/article/{{ item._id.toString() }}">阅读全文 »</a>
     </li>
     {% endfor %}
+    <li class="pagination">
+        <a href="/archive">博客归档</a>
+    </li>
+    <li class="line"></li>
 </ul>
 <script>
     $(document).on('click', '.a-delete', function(e) {
