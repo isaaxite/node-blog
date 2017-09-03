@@ -1,0 +1,11 @@
+body.updateArt{
+  &>.side{ display: none; }
+  &>.content{ left: 0;padding: 0; }
+}
+.update-article{
+  &{ height: 100%;position: relative; }
+  &>span{ background-color: rgb(247, 247, 247);display: inline-block;line-height: 50px;position: absolute;top: 0;left: 0;width: 50px;font-size: 18px;text-align: right;border-right: 1px solid rgb(221, 221, 221);padding-right: 15px;  }
+  .title{ width: 100%;height: 50px;font-size: 30px;outline: none;padding-left: 65px;border: none; }
+  .menu,.menu + hr{ display: none; }
+  .editormd{ position: absolute;top: 50px;bottom: 0;left: 0;right: 0;height: auto !important; }
+}

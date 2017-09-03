@@ -1,25 +1,20 @@
 {% extends 'layout.html' %}
-
 {% block title %}{{title}} {%endblock%}
-
 {% block head %}
 <link rel="stylesheet" href="/stylesheets/editormd.min.css" />
-<style>
-    html,body{ height: 100%; }
-    body{ margin: 0;padding: 0;overflow-x: hidden; }
-    .title{ width: 100%;height: 50px;font-size: 30px;outline: none;padding-left: 50px;box-sizing: border-box;border: none; }
-    .menu,.menu + hr{ display: none; }
-</style>
 {% endblock %}
-{% block content %}
-<input class="title" type="text" name="title" data-id="{{data._id.toString()}}" placeholder="请输入标题..." value="{{data.title}}">
-<div id="editormd">
-    <textarea style="display:none;">{{data.markdown||'###前言'}}</textarea>
+{% block content %} 
+<div class="update-article">
+  <span><i class="fa fa-file-text" aria-hidden="true"></i></span><input class="title" type="text" name="title" data-id="{{data._id.toString()}}" placeholder="请输入标题..." value="{{data.title}}">
+  <div id="editormd">
+      <textarea style="display:none;">{{data.markdown||'###前言'}}</textarea>
+  </div>
 </div>
 <script src="/javascripts/jquery-1.11.1.min.js"></script>
 <script src="/statics/editor.md/editormd.js"></script>
 <script type="text/javascript">
   $(function() {
+    document.body.className = 'updateArt';
     var editor = editormd("editormd", {
       path : "/statics/editor.md/lib/", // Autoload modules mode, codemirror, marked... dependents libs path
       width  : "100%",
