@@ -29,7 +29,7 @@ Articles.prototype.save = function(options,callback) {
   });
 };
 
-Articles.prototype.find = function(count, callback){
+Articles.prototype.find = function(count, callback, sort){
   var that = this;
   mongodb.open(function(err, db) {
     if(err){ return callback(err); }
@@ -39,7 +39,7 @@ Articles.prototype.find = function(count, callback){
         return callback(err);
       }
 
-      collection.find().toArray(function(err, docs) {
+      collection.find().sort(sort).toArray(function(err, docs) {
         mongodb.close();
         if(err) { return callback(err); }
         callback(null, docs);
@@ -105,7 +105,12 @@ Articles.prototype.update = function(options, callback) {
       }
 
       collection.update({'_id': ObjectId(options.id)}, {
-          $set: { title: options.title, markdown: options.markdown }
+          $set: { 
+            cover: options.cover,
+            title: options.title,
+            abstract: options.abstract,
+            markdown: options.markdown
+          }
       }, function(err) {
         mongodb.close();
         if(err) { return callback(err); }

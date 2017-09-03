@@ -6,14 +6,9 @@
 {% endblock %}
 
 {% block content %}
-{% if userinfo %}<a href="/add">添加文章{% endif %}
 <ul class="home">
     {% for item in data %}
     <li class="item">
-        {% if userinfo %}
-        <a href="javascript: ;" class="a-delete" data-id="{{item._id.toString()}}">删除文章</a>
-        {% endif %}
-
         <div class="title">
             <a href="/article/{{ item._id.toString() }}">{{item.title||"无标题文章"}}</a>
             <div class="msg">
@@ -22,7 +17,12 @@
             </div>
         </div>
         <div class="abstract">{{ item.abstract }}</div>
-        <a href="/article/{{ item._id.toString() }}">阅读全文 »</a>
+        <div class="operate">
+            <a href="/article/{{ item._id.toString() }}">阅读全文 »</a>
+            {% if userinfo %}
+            <a href="javascript: ;" class="a-delete" data-id="{{item._id.toString()}}">删除文章 »</a>
+            {% endif %}
+        </div>
     </li>
     {% endfor %}
     <li class="pagination">
