@@ -91,10 +91,10 @@ router.get('/about', function (req, resp) {
 
 router.get('/add(/:id)?', function (req, resp) {
   console.log(req.session.userinfo);
-  if(!req.session.userinfo) {
-    resp.redirect('/');
-    return false;
-  }
+  // if(!req.session.userinfo) {
+  //   resp.redirect('/');
+  //   return false;
+  // }
   var id = req.params.id;
   if(id) {
     var article = new Article();
@@ -149,12 +149,17 @@ router.post('/aSaveArticle', function (req, resp) {
   var date = new Date();
   var time = date.getTime();
   var body = req.body;
-  var pattern = /!\[.*\]\((https?:\/\/)?[\/\w %\?\.-]*\)/;
-  var cover = req.body.markdown.match(pattern)[0];
-      cover = cover.match(/\(.*/)[0].slice(1,-1);
-  var abstract = req.body.markdown.replace(/(!?\[.*\]\(.*\))|[\n\s]|(```)/g, '');
-      abstract = abstract.slice(0, 150) + '...';
 
+  var pattern = /!\[.*\]\((https?:\/\/)?[\/\w %\?\.-]*\)/;
+  let cover = body.markdown.match(pattern);
+  if(cover) {
+    cover = body.markdown.match(pattern)[0];
+    cover = cover.match(/\(.*/)[0].slice(1,-1);
+  }
+      
+  var abstract = req.body.markdown.replace(/(!?\[.*\]\(.*\))|[\n\s]|(```)/g, '');
+  abstract = abstract.slice(0, 150) + '...';
+      
   var data = {
     title: body.title,
     abstract: abstract,
@@ -162,17 +167,28 @@ router.post('/aSaveArticle', function (req, resp) {
     cover: cover,
     updateAt: time
   };
+
   var article = new Article();
   if(body.id){
     data.id = body.id;
     article.update(data, function(err, docs) {
-      resp.json({ status: 0, msg: 'test' });
+      if(err) {
+        resp.json({ status: 1, msg: 'fail' })
+        resp.end();
+        return false;
+      }
+      resp.json({ status: 0, msg: 'update success' });
       resp.end();
     });
   }else{
     data.createAt = time,
     article.save(data, function(err, docs) {
-      resp.json({ status: 0, msg: 'test' });
+      if(err) {
+        resp.json({ status: 1, msg: 'fail' })
+        resp.end();
+        return false;
+      }
+      resp.json({ status: 0, msg: 'save success' });
       resp.end();
     });
   }
