@@ -1,7 +1,14 @@
 <ul class="menu">
   <li class="headimg">
-    <div class="pic" data-origin="http://ohi69gup6.bkt.clouddn.com/head_img.png?imageView2/1/w/280/h/280/interlace/0/q/100"><img src="http://ohi69gup6.bkt.clouddn.com/head_img.png?imageView2/1/w/14/h/14/interlace/0/q/100
-      "></div>
+    <div class="pic" data-origin="http://ohi69gup6.bkt.clouddn.com/head_img.png?imageView2/1/w/280/h/280/interlace/0/q/100">
+      {% if userinfo %}
+        <a href="/sign/out">Sign Out</a>
+      {% else %}
+        <a href="/sign/in">Sign In</a>
+      {% endif %}
+      <img src="http://ohi69gup6.bkt.clouddn.com/head_img.png?imageView2/1/w/14/h/14/interlace/0/q/100
+      ">
+    </div>
     <p>isaac_宝华</p>
   </li>
   <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i>主页</a></li>
@@ -29,5 +36,9 @@
     img.onload = function() {
       dom.src = img.src;
     }
+    var signDom = document.querySelector('.headimg .pic img');
+    signDom.addEventListener('dblclick', function(){
+      this.parentElement.classList.toggle('active')
+    }, false);
   })()
 </script>

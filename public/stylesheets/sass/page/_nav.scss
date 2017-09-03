@@ -7,9 +7,13 @@
   }
   .headimg{ 
     &{ font-size: 0;line-height: 0;margin: auto;text-align: center;margin-bottom: 30px; }
-    .pic{ height: 140px;width: 140px;border-radius: 50%;overflow: hidden;background-color: #ffffff;margin: auto;margin-bottom: 15px; }
-    img{ display: inline-block;width: 100%; }
+    .pic{ height: 140px;width: 140px;border-radius: 50%;background-color: #ffffff;margin: auto;margin-bottom: 15px;position: relative;z-index: 10; }
+    a{ font-size: 14px;display: inline-block;line-height: 40px;background-color: rgba(180, 180, 180, 0.6);text-align: center;padding: 0;width: 100px;width: 74px;border-radius: 20px;box-shadow: 0 0 2px rgba(180, 180, 180, 0.8); }
+    img{ display: inline-block;width: 100%;position: absolute;top: 0;left: 0;border-radius: 50%;transition: all 0.3s ease-in-out; }
     p{ font-size: 16px;line-height: 28px; }
+    .pic.active{
+      img{ top: 64px; }
+    }
   }
   .link{ 
     &{ padding-left: 15px; }
