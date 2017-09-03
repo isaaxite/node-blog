@@ -91,10 +91,10 @@ router.get('/about', function (req, resp) {
 
 router.get('/add(/:id)?', function (req, resp) {
   console.log(req.session.userinfo);
-  // if(!req.session.userinfo) {
-  //   resp.redirect('/');
-  //   return false;
-  // }
+  if(!req.session.userinfo) {
+    resp.redirect('/');
+    return false;
+  }
   var id = req.params.id;
   if(id) {
     var article = new Article();
