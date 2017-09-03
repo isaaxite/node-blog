@@ -10,11 +10,17 @@
 <div class="article" id="container">
     <div class="title">
         <a href="/article/{{ item._id.toString() }}">{{data.title||"无标题文章"}}</a>
-        <div class="msg">
-            <h3>isaac_宝华 发布于 {{ data.createAt|date('m月d, Y') }}</h3>
-            <small>0 comments</small>
-        </div>
-        {% if userinfo %}<a class="a-edit" href="/add/{{data._id.toString()}}">编辑文章</a>{% endif %}
+        <ul class="msg">
+            <li>
+                <h3>isaac_宝华 发布于 {{ data.createAt|date('m月d, Y') }}</h3>
+                <small>0 comments</small>
+            </li>
+            {% if userinfo %}
+            <li>
+                <a href="/add/{{data._id.toString()}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            </li>
+            {% endif %}
+        </ul>
     </div>
     <div id="article">
         <textarea style="display:none;" name="test-editormd-markdown-doc">{{data.markdown}}</textarea>
