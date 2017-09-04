@@ -3,7 +3,7 @@
   .fa-bars{ display: inline-block; }
   .fa-times{ display: none; }
   .bar{
-    &{ display: block;text-align: center;background-color: #202020;color: #ffffff;line-height: 50px;  }
+    &{ display: block;text-align: center;background-color: #202020;color: #ffffff;line-height: 50px;height: 50px;  }
     &>a{ position: absolute;top: 0;left: 10px;color: #ffffff; }
     &>a>i{ line-height: 50px; }
     &>.pic{ 
@@ -13,6 +13,7 @@
   }
   &.active{ 
     &{ left: 250px; }
+    .bar>span{ display: none; }
     .fa-bars{ display: none !important; }
     .fa-times{ display: inline-block !important; }
   }
