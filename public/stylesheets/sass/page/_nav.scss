@@ -1,5 +1,5 @@
 .side>.menu{
-  height: 100%;color: #999;padding-top: 40px;
+  &{ height: 100%;color: #999;padding-top: 40px; }
   a{ 
     &{ color: #ffffff;opacity: 0.6;display: block;padding-left: 25px;text-decoration: none;line-height: 26px;margin: 20px 0; }
     &>i{ margin-right: 20px;width: 16px;font-size: 16px; }

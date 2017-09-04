@@ -1,0 +1,22 @@
+<nav class="navbar">
+  <div class="bar">
+    <a id="bar-menu" href="javascript:;">
+      <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+      <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+    </a>
+    <span>isaac_宝华</span>
+    <div class="pic"><img src="http://ohi69gup6.bkt.clouddn.com/head_img.png?imageView2/1/w/60/h/60/interlace/0/q/100"></div>
+  </div>
+</nav>
+<script>
+  (function(){
+    var dom = document.querySelector('#bar-menu');
+    dom.addEventListener('click', function(){
+      var navbar = document.querySelector('nav.navbar');
+
+      var nav = document.querySelector('body>.side');
+      nav.classList.toggle('active');
+      navbar.classList.toggle('active');
+    });
+  })()
+</script>
