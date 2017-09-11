@@ -10,8 +10,19 @@ body{
   @media (max-width: 720px) {
     &>.side{ left: -250px; }
     &>.content{ 
-      &{ left: 0; }
+      &{ left: 0;top: 50px; }
       &>.navbar{ display: block; }
+    }
+    .home{
+      .title{ 
+        &{ padding: 0;font-size: 24px; }
+        .msg{ 
+          &{ position: relative;text-align: left;font-size: 12px; }
+          &>small{ display: none; }
+          &>span{ display: inline-block;position: absolute;top: 0;right: 0; }
+        }
+      }
+      .abstract{ text-align: justify;word-break: break-all;font-size: 14px; }
     }
   }
 }
