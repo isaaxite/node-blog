@@ -9,17 +9,18 @@ body{
   }
   @media (max-width: 720px) {
     &>.side{ left: -250px; }
+    &>.navbar{ display: block;z-index: 1000000; }
     &>.content{ 
-      &{ left: 0;top: 50px; }
-      &>.navbar{ display: block; }
+      &{ left: 0;padding: 10px 15px;padding-top: 60px;-webkit-overflow-scrolling: touch; }
     }
-    .home{
+    .home, .article{
       .title{ 
         &{ padding: 0;font-size: 24px; }
         .msg{ 
           &{ position: relative;text-align: left;font-size: 12px; }
-          &>small{ display: none; }
-          &>span{ display: inline-block;position: absolute;top: 0;right: 0; }
+          &>li{ display: block; }
+          small{ display: none; }
+          span{ display: inline-block;position: absolute;top: 0;right: 0;color: #b0adad; }
         }
       }
       .abstract{ text-align: justify;word-break: break-all;font-size: 14px; }
